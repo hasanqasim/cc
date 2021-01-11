@@ -15,6 +15,8 @@
 		A66AEB8425AC4C4200EB5637 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A66AEB8325AC4C4200EB5637 /* Assets.xcassets */; };
 		A66AEB8725AC4C4200EB5637 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A66AEB8525AC4C4200EB5637 /* LaunchScreen.storyboard */; };
 		A66AEBAB25AC54CC00EB5637 /* SinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66AEBAA25AC54CC00EB5637 /* SinView.swift */; };
+		A66AEBB225AC5E4200EB5637 /* Electricity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66AEBB125AC5E4200EB5637 /* Electricity.swift */; };
+		A66AEBD925AC6F6200EB5637 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A66AEBD825AC6F6200EB5637 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		A66AEB8625AC4C4200EB5637 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A66AEB8825AC4C4200EB5637 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A66AEBAA25AC54CC00EB5637 /* SinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinView.swift; sourceTree = "<group>"; };
+		A66AEBB125AC5E4200EB5637 /* Electricity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Electricity.swift; sourceTree = "<group>"; };
+		A66AEBD825AC6F6200EB5637 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AB33927264553700D3C222B7 /* Pods-TechnicalChallengeCC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TechnicalChallengeCC.release.xcconfig"; path = "Target Support Files/Pods-TechnicalChallengeCC/Pods-TechnicalChallengeCC.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,6 +86,7 @@
 		A66AEB7925AC4C3D00EB5637 /* TechnicalChallengeCC */ = {
 			isa = PBXGroup;
 			children = (
+				A66AEBB025AC5E2400EB5637 /* Model */,
 				A66AEBAE25AC560F00EB5637 /* Controller */,
 				A66AEBA925AC548500EB5637 /* View */,
 				A66AEB7A25AC4C3D00EB5637 /* AppDelegate.swift */,
@@ -90,6 +95,7 @@
 				A66AEB8325AC4C4200EB5637 /* Assets.xcassets */,
 				A66AEB8525AC4C4200EB5637 /* LaunchScreen.storyboard */,
 				A66AEB8825AC4C4200EB5637 /* Info.plist */,
+				A66AEBD825AC6F6200EB5637 /* GoogleService-Info.plist */,
 			);
 			path = TechnicalChallengeCC;
 			sourceTree = "<group>";
@@ -108,6 +114,14 @@
 				A66AEB7E25AC4C3D00EB5637 /* SinViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		A66AEBB025AC5E2400EB5637 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A66AEBB125AC5E4200EB5637 /* Electricity.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,6 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A66AEB8725AC4C4200EB5637 /* LaunchScreen.storyboard in Resources */,
+				A66AEBD925AC6F6200EB5637 /* GoogleService-Info.plist in Resources */,
 				A66AEB8425AC4C4200EB5637 /* Assets.xcassets in Resources */,
 				A66AEB8225AC4C3D00EB5637 /* Main.storyboard in Resources */,
 			);
@@ -228,6 +243,7 @@
 				A66AEBAB25AC54CC00EB5637 /* SinView.swift in Sources */,
 				A66AEB7B25AC4C3D00EB5637 /* AppDelegate.swift in Sources */,
 				A66AEB7D25AC4C3D00EB5637 /* SceneDelegate.swift in Sources */,
+				A66AEBB225AC5E4200EB5637 /* Electricity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

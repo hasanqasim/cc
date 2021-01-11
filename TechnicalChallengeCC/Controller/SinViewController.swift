@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import Firebase
 
 class SinViewController: UIViewController {
 
     @IBOutlet weak var sinView: SinView!
     
-    var textLayer: CATextLayer?
+    var LastLocationUpdateTextLayer: CATextLayer?
+    var currentElectricityPriceLayer: CATextLayer?
     
     var timer: Timer?
     
@@ -28,6 +30,8 @@ class SinViewController: UIViewController {
     
     var labelArray = [UILabel]()
     
+    var electrictyObjArr = [Electricity]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -37,16 +41,21 @@ class SinViewController: UIViewController {
         addAllXAxisLabelsToView(merediesA: "AM", merediesB: "PM")
         addAllYAxisLabelsToView()
         
-        textLayer = createTextLayer()
-        if let layer = textLayer {
+        LastLocationUpdateTextLayer = createTextLayer(text: "Last Location at: 09:00am(Now)", x: 480, y: 16)
+        currentElectricityPriceLayer = createTextLayer(text: "Current Electricty Price: $50", x: 16, y: 16)
+        if let layer = LastLocationUpdateTextLayer, let electrictyPriceLayer = currentElectricityPriceLayer {
             self.sinView.layer.addSublayer(layer)
+            self.sinView.layer.addSublayer(electrictyPriceLayer)
         }
         
         startTimer()
+        authenticate()
+        
+       
     }
 }
 
-//MARK: Timer logic code
+//MARK: Location tracking business logic code
 extension SinViewController {
     
     func startTimer() {
@@ -91,7 +100,6 @@ extension SinViewController {
         
         if count == 60 {
             updateTimeCounters()
-            print("COUNT: \(count)")
             stopTimer()
         }
     }
@@ -105,7 +113,6 @@ extension SinViewController {
         self.flag = false
         let periodOne: CGFloat = value/60
         sinView.frequency = value
-        print("frequency: \(value)")
         return periodOne
     }
     
@@ -127,7 +134,6 @@ extension SinViewController {
     
     func createXAxisLabel(text: String) -> UILabel {
         let label = UILabel()
-        //label.backgroundColor = .blue
         label.text = text
         label.font = label.font.withSize(14)
         label.textColor = .white
@@ -146,7 +152,6 @@ extension SinViewController {
     
     func createYAxisLabel(text: String) -> UILabel {
         let label = UILabel()
-        //label.backgroundColor = .black
         label.text = text
         label.font = label.font.withSize(12)
         label.textColor = .white
@@ -163,7 +168,7 @@ extension SinViewController {
         label.topAnchor.constraint(equalTo: self.sinView.topAnchor, constant: constant).isActive = true
     }
     
-    func createTextLayer() -> CATextLayer {
+    func createTextLayer(text: String, x: CGFloat, y: CGFloat) -> CATextLayer {
         let width = self.sinView.frame.width/4
         let height = self.sinView.frame.height
        
@@ -172,11 +177,10 @@ extension SinViewController {
         let offset = min(width, height) * 0.1
         
         let layer = CATextLayer()
-        //layer.backgroundColor = UIColor.black.cgColor
-        layer.string = "Last Location at: 09:00am(Now)"
+        layer.string = text
         layer.foregroundColor = UIColor.white.cgColor
         layer.fontSize = fontSize
-        layer.frame = CGRect(x: 480, y: 16, width: width+92, height: fontSize + offset - 16)
+        layer.frame = CGRect(x: x, y: y, width: width+92, height: fontSize + offset - 16)
         layer.alignmentMode = .center
         return layer
     }
@@ -243,7 +247,7 @@ extension SinViewController {
     }
     
     func updateTextLayer() {
-        if let layer = textLayer {
+        if let layer = LastLocationUpdateTextLayer {
             let meridiesString: String?
             let hourString = hoursCounter < 10 ? "0\(hoursCounter)" : "\(hoursCounter)"
             let minuteString = minutesCounter < 10 ? "0\(minutesCounter)" : "\(minutesCounter)"
@@ -256,6 +260,19 @@ extension SinViewController {
         }
     }
     
+    func updateElectricityPriceLayer() {
+        if electrictyObjArr.count != 0 {
+            let currentPrice = electrictyObjArr[electrictyObjArr.count-1].price
+            if currentPrice > 60 {
+                currentElectricityPriceLayer?.foregroundColor = UIColor.red.cgColor
+            } else {
+                currentElectricityPriceLayer?.foregroundColor = UIColor.green.cgColor
+            }
+            currentElectricityPriceLayer!.string = "Current Electricty Price: $\(currentPrice)"
+        }
+        
+    }
+    
     func updateLabels(merediesA: String, merediesB: String) {
         for i in 0...2 {
             labelArray[i].text = labelArray[i].text!.replacingOccurrences(of: merediesA, with: merediesB)
@@ -266,6 +283,37 @@ extension SinViewController {
         }
     }
 
+}
+
+//MARK: Firebase Listener code
+extension SinViewController {
+    
+    func authenticate() {
+        Auth.auth().signInAnonymously() { (authResult, error) in
+            guard authResult != nil else {
+                fatalError("Firebase authentication failed")
+            }
+            self.setupFirebaseListener()
+        }
+    }
+    
+    func setupFirebaseListener() {
+        Firestore.firestore().collection("Electricity").addSnapshotListener { querySnapshot, error in
+            guard querySnapshot?.documents != nil else {
+                print("error fetching documents: \(error!)")
+                return
+              }
+            querySnapshot!.documentChanges.forEach { change in
+                guard (change.document.data()["price"] != nil) else {
+                    return
+                }
+                let price = change.document.data()["price"] as! Int
+                self.electrictyObjArr.append(Electricity(price: price*10))
+                self.updateElectricityPriceLayer()
+            }
+        }
+    }
+    
 }
 
 
