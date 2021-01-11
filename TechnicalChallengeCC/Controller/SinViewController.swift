@@ -7,8 +7,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class SinViewController: UIViewController {
 
+    @IBOutlet weak var sinView: SinView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
