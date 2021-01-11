@@ -1,0 +1,6 @@
+framework module Pods_TechnicalChallengeCC {
+  umbrella header "Pods-TechnicalChallengeCC-umbrella.h"
+
+  export *
+  module * { export * }
+}
