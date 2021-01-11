@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,7 @@
 		A66AEB8225AC4C3D00EB5637 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A66AEB8025AC4C3D00EB5637 /* Main.storyboard */; };
 		A66AEB8425AC4C4200EB5637 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A66AEB8325AC4C4200EB5637 /* Assets.xcassets */; };
 		A66AEB8725AC4C4200EB5637 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A66AEB8525AC4C4200EB5637 /* LaunchScreen.storyboard */; };
+		A66AEBAB25AC54CC00EB5637 /* SinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66AEBAA25AC54CC00EB5637 /* SinView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		A66AEB8325AC4C4200EB5637 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A66AEB8625AC4C4200EB5637 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A66AEB8825AC4C4200EB5637 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A66AEBAA25AC54CC00EB5637 /* SinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinView.swift; sourceTree = "<group>"; };
 		AB33927264553700D3C222B7 /* Pods-TechnicalChallengeCC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TechnicalChallengeCC.release.xcconfig"; path = "Target Support Files/Pods-TechnicalChallengeCC/Pods-TechnicalChallengeCC.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,7 +58,6 @@
 				87E6CC356F2EBF025365E7B6 /* Pods-TechnicalChallengeCC.debug.xcconfig */,
 				AB33927264553700D3C222B7 /* Pods-TechnicalChallengeCC.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -81,6 +82,7 @@
 		A66AEB7925AC4C3D00EB5637 /* TechnicalChallengeCC */ = {
 			isa = PBXGroup;
 			children = (
+				A66AEBA925AC548500EB5637 /* View */,
 				A66AEB7A25AC4C3D00EB5637 /* AppDelegate.swift */,
 				A66AEB7C25AC4C3D00EB5637 /* SceneDelegate.swift */,
 				A66AEB7E25AC4C3D00EB5637 /* ViewController.swift */,
@@ -90,6 +92,14 @@
 				A66AEB8825AC4C4200EB5637 /* Info.plist */,
 			);
 			path = TechnicalChallengeCC;
+			sourceTree = "<group>";
+		};
+		A66AEBA925AC548500EB5637 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A66AEBAA25AC54CC00EB5637 /* SinView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,6 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A66AEB7F25AC4C3D00EB5637 /* ViewController.swift in Sources */,
+				A66AEBAB25AC54CC00EB5637 /* SinView.swift in Sources */,
 				A66AEB7B25AC4C3D00EB5637 /* AppDelegate.swift in Sources */,
 				A66AEB7D25AC4C3D00EB5637 /* SceneDelegate.swift in Sources */,
 			);
@@ -366,7 +377,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hq.TechnicalChallengeCC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -386,7 +397,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hq.TechnicalChallengeCC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
